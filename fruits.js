@@ -1,4 +1,5 @@
 status = "";
+object = [];
 
 function setup()
 {
@@ -26,4 +27,21 @@ function gotResult(error, results)
       console.log(error);
   }
     console.log(reults);
+    object = results;
+}
+
+function draw()
+{
+    if (status != "")
+    {
+        for (i=0; i < object.length; i++)
+        {
+            percent = floor(object[i].confidence * 100);
+            text(object[i].label + "" + percent + "%", object[i].x, object[i].y)
+            rect(object[i].x, object[i].y, object[i].width, object[i].heigth);
+
+            document.getElementById("no").innerHTML = object;
+            document.getElementById("status").innerhtml = "Status : Object Detected";
+        }
+    }
 }
